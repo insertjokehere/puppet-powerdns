@@ -39,7 +39,7 @@ class powerdns::backend::gsqlite3 (
     'dnssec'              => $dnssec
   }
 
-  file { "${::powerdns::config::config_path}/pdns.d/gsqlite3.conf":
+  file { '/etc/powerdns/pdns.d/gsqlite3.conf':
     ensure  => present,
     content => template("${module_name}/backend.conf.erb"),
     owner   => $::powerdns::config::config_owner,
