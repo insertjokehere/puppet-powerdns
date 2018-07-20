@@ -18,9 +18,20 @@
 define powerdns::setting (
   $ensure = 'present',
   $value  = undef,
+  $append = false,
+  $parameter = $name,
+  $order = '50'
 ) {
+
+  if ($append) {
+    $operator = '+='
+  } else {
+    $operator = '='
+  }
+
   concat::fragment { $name:
     target  => "${::powerdns::config::config_path}/pdns.conf",
-    content => "${name}=${value}\n",
+    content => "${parameter}${operator}${value}\n",
+    order   => $order
   }
 }
