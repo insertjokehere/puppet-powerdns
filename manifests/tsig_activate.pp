@@ -8,6 +8,6 @@ define powerdns::tsig_activate($keyname=$name, $zone, $role) {
 
   exec { "activate-tsig-${keyname}-${zone}":
     command => "/usr/bin/pdnsutil activate-tsig-key ${zone} ${keyname} ${role}",
-    unless  => "/usr/bin/pdsnutil get-meta ${zone} ${meta} | /bin/grep ${keyname}"
+    unless  => "/usr/bin/pdnsutil get-meta ${zone} ${meta} | /bin/grep ${keyname}"
   }
 }
